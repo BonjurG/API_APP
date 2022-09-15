@@ -1,4 +1,4 @@
-import fastapi
+'''import fastapi
 
 api = fastapi.FastAPI()
 
@@ -8,7 +8,7 @@ def api_hello():
 
 
 
-'''
+
 uvicorn main:api --reload для запуска сервера
 uvicorn - это сам сервер на котором работает наш проект, 
 main - файл проекта откуда мы передаем ему с помощью двоеточия созданный нами объект api,
