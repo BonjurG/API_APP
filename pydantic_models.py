@@ -6,3 +6,4 @@ class User(pydantic.BaseModel):
     name: str
     nick: str
     balance: float
+

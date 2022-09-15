@@ -1,4 +1,5 @@
 import fastapi
+from fastapi import Request     # позволяет нам перехватывать запрос и получать по нему всю информацию
 import database
 import pydantic_models
 import config
@@ -29,9 +30,9 @@ fake_database = {'users':[
 ],}
 
 
-@api.get('/')
-def index():
-    return response
+#@api.get('/')
+#def index():
+#    return response
 
 
 @api.get('/grem')
@@ -103,3 +104,13 @@ def get_users(skip: int = 0, limit: int = 10):        #http://127.0.0.1:8000/use
 #    if query:
 #        return {"user_id": user_id, "query": query}
 #    return {"user_id": user_id}
+
+
+
+@api.get('/')       # метод для обработки get запросов
+@api.post('/')      # метод для обработки post запросов
+@api.put('/')       # метод для обработки put запросов
+@api.delete('/')    # метод для обработки delete запросов
+def index(request: Request):  # тут request - будет объектом в котором хранится вся информация о запросе
+    return {"Request" : [request.method,    # тут наш API вернет клиенту метод, с которым этот запрос был совершен
+                         request.headers]}  # а тут в ответ вернутся все хедеры клиентского запроса
